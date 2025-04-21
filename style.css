@@ -12,7 +12,7 @@ body, html {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 10px;
+  padding: 30px;
   overflow-x: hidden; /* Prevent horizontal overflow */
 }
 
@@ -21,8 +21,8 @@ body, html {
   max-width: 500px;
   background: white;
   border-radius: 16px;
-  padding: 15px;
-  box-shadow: 0 0 15px rgba(0, 0, 0, 0.7);
+  padding: 50px;
+  box-shadow: 0 0 50px rgba(0, 0, 0, 0.9);
   text-align: center;
 }
 
@@ -49,7 +49,7 @@ h1 {
 button, .camera-label {
   background-color: #6200ee;
   color: white;
-  padding: 12px 20px;
+  padding: 0px 10px;
   border: none;
   border-radius: 8px;
   cursor: pointer;
@@ -57,7 +57,7 @@ button, .camera-label {
   margin: 8px auto;
   display: block;
   width: 90%;
-  max-width: 300px;
+  max-width: 250px;
   text-align: center;
 }
 
@@ -72,7 +72,7 @@ button:hover, .camera-label:hover {
 .output {
   border: 1px solid #ccc;
   border-radius: 8px;
-  padding: 12px;
+  padding: 20px;
   font-size: 16px;
   min-height: 180px;
   margin-top: 10px;
