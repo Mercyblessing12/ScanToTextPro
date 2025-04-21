@@ -1,37 +1,3 @@
-// Firebase initialization (simplified)
-const firebaseConfig = {
-  apiKey: "AIzaSyD8Zps9f0D-m_bk2UQugAQuR5zyvaJ2Isw",
-  authDomain: "scantotextpro.firebaseapp.com",
-  projectId: "scantotextpro",
-  storageBucket: "scantotextpro.appspot.com", // Corrected storage bucket URL
-  messagingSenderId: "243371040420",
-  appId: "1:243371040420:web:8ddc3a5dc0f61951835031",
-  measurementId: "G-EZHZK47KF0"
-};
-
-// Ensure Firebase is initialized before using it
-if (typeof firebase !== "undefined") {
-  firebase.initializeApp(firebaseConfig);
-  console.log("Firebase Initialized");
-
-  // Initialize Remote Config
-  const remoteConfig = firebase.remoteConfig();
-  remoteConfig.settings = {
-    minimumFetchIntervalMillis: 3600000, // 1 hour
-  };
-
-  // Fetch and activate remote config
-  remoteConfig.fetchAndActivate()
-  .then(() => {
-    console.log("Remote config fetched and activated");
-  })
-  .catch((err) => {
-    console.error("Error fetching remote config:", err);
-  });
-} else {
-  console.error("Firebase SDK not available");
-}
-
 const imageInput = document.getElementById('imageInput');
 const filePicker = document.getElementById('filePicker');
 const scanButton = document.getElementById('scanButton');
