@@ -11,9 +11,10 @@ body, html {
   color: #333;
   display: flex;
   justify-content: center;
-  align-items: center;
-  padding: 30px;
+  align-items: flex-start; /* Changed to flex-start to ensure title is visible */
+  padding: 1rem; /* Adjusted for better spacing on small screens */
   overflow-x: hidden; /* Prevent horizontal overflow */
+  min-height: 100vh; /* Ensure content is accessible on all screen heights */
 }
 
 .container {
@@ -21,35 +22,65 @@ body, html {
   max-width: 500px;
   background: white;
   border-radius: 16px;
-  padding: 50px;
-  box-shadow: 0 0 50px rgba(0, 0, 0, 0.9);
+  padding: 1.5rem; /* Slightly increased for better spacing */
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
   text-align: center;
+}
+
+.title-container {
+  width: 100%;
+  text-align: center;
+  margin-bottom: 1rem; /* Space below title */
+  padding-top: 0.5rem; /* Ensure title isn't cut off at top */
 }
 
 h1 {
   color: #6200ee;
-  margin-bottom: 15px;
-  font-size: 2.5rem;  /* Make title responsive */
-  word-wrap: normal; 
+  font-size: clamp(1.5rem, 5vw, 2.5rem); /* Responsive font size */
+  word-wrap: normal;
+  margin: 0; /* Reset margin to avoid conflicts */
 }
 
-/* On smaller screens, reduce the size of the title */
+/* Responsive adjustments for Android devices */
 @media (max-width: 768px) {
   h1 {
-    font-size: 2rem;
+    font-size: clamp(1.2rem, 4vw, 2rem);
+  }
+  .container {
+    padding: 1rem;
+  }
+  body {
+    padding: 0.5rem;
   }
 }
 
 @media (max-width: 480px) {
   h1 {
-    font-size: 1.5rem;
+    font-size: clamp(1rem, 3.5vw, 1.5rem);
+  }
+  .container {
+    padding: 0.75rem;
+    max-width: 95%; /* Prevent container from touching edges */
+  }
+  body {
+    padding: 0.25rem;
+  }
+}
+
+/* For very small Android screens (e.g., 360px or less) */
+@media (max-width: 360px) {
+  h1 {
+    font-size: clamp(0.9rem, 3vw, 1.2rem);
+  }
+  .container {
+    padding: 0.5rem;
   }
 }
 
 button, .camera-label {
   background-color: #6200ee;
   color: white;
-  padding: 0px 10px;
+  padding: 12px 20px;
   border: none;
   border-radius: 8px;
   cursor: pointer;
@@ -57,7 +88,7 @@ button, .camera-label {
   margin: 8px auto;
   display: block;
   width: 90%;
-  max-width: 250px;
+  max-width: 300px;
   text-align: center;
 }
 
@@ -72,7 +103,7 @@ button:hover, .camera-label:hover {
 .output {
   border: 1px solid #ccc;
   border-radius: 8px;
-  padding: 20px;
+  padding: 12px;
   font-size: 16px;
   min-height: 180px;
   margin-top: 10px;
