@@ -7,8 +7,6 @@ const themeToggle = document.getElementById('themeToggle');
 const languageSelect = document.getElementById('language');
 const searchInput = document.getElementById('searchInput');
 const searchButton = document.getElementById('searchButton');
-const saveButton = document.getElementById('saveButton');
-const savedTextsContainer = document.getElementById('savedTexts');
 
 // === OCR for Camera Input ===
 imageInput.addEventListener('change', () => {
@@ -35,8 +33,7 @@ function processImage(file) {
       status.innerText = `Progress: ${Math.round(m.progress * 100)}% - ${m.status}`;
     }
   }).then(({ data: { text } }) => {
-    // Only return pure text (ignoring code or layout)
-    const cleanText = text.replace(/[^a-zA-Z0-9\s.,!?]/g, ''); // Removes non-text characters
+    const cleanText = text.replace(/[^a-zA-Z0-9\s.,!?]/g, '');
     outputText.innerText = cleanText;
     status.innerText = "Done!";
   }).catch(err => {
@@ -63,6 +60,11 @@ function downloadText(type) {
   if (!text) return alert("No text to download.");
 
   if (type === 'txt') {
+    // 🔥 Trigger Interstitial Ad in Kodular
+    if (window.AppInventor) {
+      window.AppInventor.setWebViewString("showInterstitialAd");
+    }
+
     const blob = new Blob([text], { type: "text/plain" });
     const url = URL.createObjectURL(blob);
     const a = document.createElement("a");
@@ -70,7 +72,13 @@ function downloadText(type) {
     a.download = "text.txt";
     a.click();
     URL.revokeObjectURL(url);
+
   } else if (type === 'pdf') {
+    // 🔥 Trigger Rewarded Ad in Kodular
+    if (window.AppInventor) {
+      window.AppInventor.setWebViewString("showRewardAd");
+    }
+
     const { jsPDF } = window.jspdf;
     const doc = new jsPDF();
     const lines = doc.splitTextToSize(text, 180);
