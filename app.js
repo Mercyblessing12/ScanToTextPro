@@ -105,3 +105,19 @@ searchButton.addEventListener('click', () => {
 themeToggle.addEventListener('click', () => {
   document.body.classList.toggle("dark-mode");
 });
+
+// JavaScript for handling the rewarded ad functionality
+
+// This function is called when the bell icon is clicked
+function triggerRewardedAd() {
+  // Trigger the rewarded ad with the string for AppInventor
+  window.AppInventor.setWebViewString("rewarded_ad");
+
+  // Hide the bell icon after the ad is triggered
+  document.getElementById('rewardBell').style.display = 'none';
+}
+
+// Ensure everything is loaded before running any JavaScript (optional but good practice)
+document.addEventListener("DOMContentLoaded", function() {
+  console.log("DOM is fully loaded, the bell icon should now be visible.");
+});
