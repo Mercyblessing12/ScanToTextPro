@@ -47,25 +47,34 @@ function processImage(file) {
 function copyText() {
   const text = outputText.innerText.trim();
   if (!text) return alert("No text to copy.");
-  navigator.clipboard.writeText(text).then(() => {
-    alert("Text copied to clipboard.");
+
+  if (navigator.clipboard) {
+    navigator.clipboard.writeText(text).then(() => {
+      alert("Text copied to clipboard.");
+    }).catch(() => {
+      alert("Clipboard failed. Try manually copying.");
+    });
+  } else {
+    alert("Clipboard API not supported.");
+  }
+
+  // Trigger ad if in WebView
+  if (window.AppInventor) {
     window.AppInventor.setWebViewString("interstitial_ad1");
-  }).catch(() => {
-    alert("Failed to copy text.");
-  });
+  }
 }
 
-// === Download Text ===
-function downloadText(type) {
+// === Download Text or PDF ===
+async function downloadText(type) {
   const text = outputText.innerText.trim();
   if (!text) return alert("No text to download.");
 
-  if (type === 'txt') {
-    // 🔥 Trigger Interstitial Ad in Kodular
-    if (window.AppInventor) {
-      window.AppInventor.setWebViewString("showInterstitialAd");
-    }
+  // Trigger ad if in WebView
+  if (window.AppInventor) {
+    window.AppInventor.setWebViewString("interstitial_ad1");
+  }
 
+  if (type === 'txt') {
     const blob = new Blob([text], { type: "text/plain" });
     const url = URL.createObjectURL(blob);
     const a = document.createElement("a");
@@ -73,13 +82,7 @@ function downloadText(type) {
     a.download = "text.txt";
     a.click();
     URL.revokeObjectURL(url);
-
   } else if (type === 'pdf') {
-    // 🔥 Trigger Rewarded Ad in Kodular
-    if (window.AppInventor) {
-      window.AppInventor.setWebViewString("showRewardAd");
-    }
-
     const { jsPDF } = window.jspdf;
     const doc = new jsPDF();
     const lines = doc.splitTextToSize(text, 180);
@@ -102,23 +105,3 @@ searchButton.addEventListener('click', () => {
 themeToggle.addEventListener('click', () => {
   document.body.classList.toggle("dark-mode");
 });
-
-document.addEventListener('deviceready', function () {
-  console.log("Device is ready");
-
-  var permissions = cordova.plugins.permissions;
-
-  permissions.requestPermissions([
-    permissions.CAMERA,
-    permissions.READ_EXTERNAL_STORAGE,
-    permissions.WRITE_EXTERNAL_STORAGE
-  ], function (status) {
-    if (status.hasPermission) {
-      console.log("All permissions granted!");
-    } else {
-      console.warn("Some permissions not granted.");
-    }
-  }, function (error) {
-    console.error("Permission request error:", error);
-  });
-}, false);
