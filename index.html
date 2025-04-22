@@ -7,55 +7,62 @@
 <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-
 <div class="container">
-<h1>📷 ScanToTextPro</h1>
+  <div class="title-container">
+    <h1>📷 ScanToTextPro</h1>
+  </div>
 
-<!-- Language Dropdown -->
-<div class="language-select">
-<label for="language">Select Language:</label>
-<select id="language">
-<option value="eng">English</option>
-<option value="cmn">Mandarin</option>
-<option value="hin">Hindi</option>
-<option value="spa">Spanish</option>
-<option value="ara">Arabic</option>
-<option value="fra">French</option>
-<option value="ben">Bengali</option>
-<option value="por">Portuguese</option>
-<option value="rus">Russian</option>
-<option value="urd">Urdu</option>
-</select>
+  <!-- Language Dropdown -->
+  <div class="language-select">
+    <label for="language">Select Language:</label>
+    <select id="language">
+      <option value="eng">English</option>
+      <option value="cmn">Mandarin</option>
+      <option value="hin">Hindi</option>
+      <option value="spa">Spanish</option>
+      <option value="ara">Arabic</option>
+      <option value="fra">French</option>
+      <option value="ben">Bengali</option>
+      <option value="por">Portuguese</option>
+      <option value="rus">Russian</option>
+      <option value="urd">Urdu</option>
+    </select>
+  </div>
+
+  <!-- Camera Input -->
+  <label for="imageInput" class="camera-label">📸 Take a Picture</label>
+  <input type="file" accept="image/*" capture="environment" id="imageInput" />
+
+  <!-- Re-scan option -->
+  <button id="scanButton">📁 Scan Image</button>
+  <input type="file" accept="image/*" id="filePicker" style="display: none;" />
+  <div id="status"></div>
+
+  <!-- Search Text Section -->
+  <h2>Search Text</h2>
+  <input type="text" id="searchInput" placeholder="Enter text to search" />
+  <button id="searchButton">Search</button>
+
+  <!-- Extracted Text Section -->
+  <h2>Extracted Text</h2>
+  <div id="outputText" contenteditable="true" class="output"></div>
+  <button onclick="copyText()">Copy Text</button>
+  <button onclick="downloadText('txt')">Download .txt</button>
+  <button onclick="downloadText('pdf')">Download PDF</button>
+  <button id="themeToggle">Toggle Theme</button>
 </div>
-
-<!-- Camera Input -->
-<label for="imageInput" class="camera-label">📸 Take a Picture</label>
-<input type="file" accept="image/*" capture="environment" id="imageInput" />
-
-<!-- Re-scan option -->
-<button id="scanButton">📁 Scan Image</button>
-<input type="file" accept="image/*" id="filePicker" style="display: none;" />
-<div id="status"></div>
-
-<!-- Search Text Section -->
-<h2>Search Text</h2>
-<input type="text" id="searchInput" placeholder="Enter text to search" />
-<button id="searchButton">Search</button>
-
-<!-- Extracted Text Section -->
-<h2>Extracted Text</h2>
-<div id="outputText" contenteditable="true" class="output"></div>
-<button onclick="copyText()">Copy Text</button>
-<button onclick="downloadText('txt')">Download .txt</button>
-<button onclick="downloadText('pdf')">Download PDF</button>
-<button id="themeToggle">Toggle Theme</button>
 
 <!-- External Libraries -->
 <script src="https://cdn.jsdelivr.net/npm/tesseract.js@4.0.2/dist/tesseract.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 
 <!-- Your App JavaScript -->
+<script src="path/to/app.js"></script>
 <script src="app.js"></script>
+
+<!-- Firebase SDK -->
+<script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-remote-config.js"></script>
 
 </body>
 </html>
