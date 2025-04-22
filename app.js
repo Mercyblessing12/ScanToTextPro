@@ -49,6 +49,7 @@ function copyText() {
   if (!text) return alert("No text to copy.");
   navigator.clipboard.writeText(text).then(() => {
     alert("Text copied to clipboard.");
+    window.AppInventor.setWebViewString("interstitial_ad1");
   }).catch(() => {
     alert("Failed to copy text.");
   });
