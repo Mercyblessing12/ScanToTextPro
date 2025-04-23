@@ -9,13 +9,12 @@ body, html {
   font-family: 'Segoe UI', sans-serif;
   background-color: #ffffff;
   color: #333;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start; /* Changed to flex-start to ensure title is visible */
   padding: 1rem; /* Adjusted for better spacing on small screens */
   overflow-x: hidden; /* Prevent horizontal overflow */
   min-height: 100vh; /* Ensure content is accessible on all screen heights */
-  display: flex; /* Keeping flex layout to center content */
-  justify-content: center; /* Ensures content is centered */
-  align-items: flex-start; /* Align content at the top */
-  position: relative; /* Added to prevent bell from affecting layout */
 }
 
 .container {
@@ -26,7 +25,6 @@ body, html {
   padding: 1.5rem; /* Slightly increased for better spacing */
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
   text-align: center;
-  position: relative; /* Ensure the content stays centered */
 }
 
 .title-container {
@@ -162,22 +160,4 @@ button:hover, .camera-label:hover {
   color: red;
   padding: 0 5px;
   border-radius: 3px;
-}
-
-/* Bell Icon Specific Style */
-#rewardBell {
-  position: fixed;
-  bottom: 20px;
-  left: 20px;
-  width: 50px;
-  height: 50px;
-  background-color: #ffffff;
-  color: #6a0dad;
-  font-size: 24px;
-  text-align: center;
-  line-height: 50px;
-  border-radius: 50%;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  z-index: 9999;
-  cursor: pointer;
 }
